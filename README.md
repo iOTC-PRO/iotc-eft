@@ -143,7 +143,7 @@ assetType | Y | 币种类型BTC/ETH/USDT
 amount | Y | 转账的金额
 traceId | Y | 在请求时传入的跟踪ID
 
-##### 5.2.2 请求响应报文示例
+##### 请求响应报文示例
 
 1、请求报文示例
 
