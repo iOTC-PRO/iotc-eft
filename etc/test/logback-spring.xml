@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include
+		resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<contextName>iOTC-EFT</contextName>
+	<property name="LOG_PATH" value="/work/logs" />
+	<!--设置系统日志目录 -->
+	<property name="APPDIR" value="iOTC_EFT" />
+
+	<!-- error级别的日志 -->
+	<appender name="FILE_ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_PATH}/${APPDIR}/error.log</File>
+		<encoder>
+			<pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n
+			</pattern>
+			<charset>utf-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/${APPDIR}/error/error-%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<append>true</append>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>error</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- warn级别的日志 -->
+	<appender name="FILE_WARN"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_PATH}/${APPDIR}/warn.log</File>
+		<encoder>
+			<pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n
+			</pattern>
+			<charset>utf-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/${APPDIR}/warn/warn-%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<append>true</append>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>warn</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<!-- info级别的日志 -->
+	<appender name="FILE_INFO"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_PATH}/${APPDIR}/info.log</File>
+		<encoder>
+			<pattern>%date [%level] [%thread] %logger{60} [%file : %line] %msg%n
+			</pattern>
+			<charset>utf-8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/${APPDIR}/info/info-%d{yyyy-MM-dd}.log
+			</fileNamePattern>
+		</rollingPolicy>
+		<append>true</append>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>info</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+	</appender>
+
+	<root level="DEBUG">
+		<appender-ref ref="FILE_ERROR" />
+		<appender-ref ref="FILE_WARN" />
+		<appender-ref ref="FILE_INFO" />
+	</root>
+</configuration>
